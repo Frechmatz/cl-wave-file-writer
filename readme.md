@@ -5,10 +5,10 @@ A Common Lisp library for writing wave (.wav) files. The writer does not buffer 
 
 **Example:**
 
-    (defpackage :cl-wave-writer-example-1
+    (defpackage :cl-wave-file-writer-example-1
       (:use :cl))
     
-    (in-package :cl-wave-writer-example-1)
+    (in-package :cl-wave-file-writer-example-1)
     
     (defconstant 2PI (* 2 PI))
     
@@ -20,22 +20,24 @@ A Common Lisp library for writing wave (.wav) files. The writer does not buffer 
             (setf phi (rem (+ phi (get-delta-phi frequency)) 2PI))))))
     
     (defun example()
-      (let* ((sample-rate 44100) (channel-count 2) (sample-width :16Bit)
+      (let* ((sample-rate 44100)
              (phase-generator (make-phase-generator sample-rate)))
         ;; Instantiate writer
         (let ((wave-writer (cl-wave-file-writer:make-writer
-                            :filename (merge-pathnames "sine.wav" (user-homedir-pathname))
-                            :channel-count channel-count
-                            :sample-width sample-width
+                            :filename (merge-pathnames
+    				   "cl-wave-file-writer-example-1.wav"
+    				   (user-homedir-pathname))
+                            :channel-count 2
+                            :sample-width :16Bit
                             :sample-rate sample-rate)))
           ;; Open file
           (funcall (getf wave-writer :open-file))
           ;; Write samples
-          (let ((length-seconds 5))
+          (let ((length-seconds 2) (frequency 5))
             (dotimes (i (* length-seconds sample-rate))
-              (let ((sample (sin (funcall phase-generator 440))))
-                (dotimes (c channel-count)
-                  (funcall (getf wave-writer :write-sample) sample)))))
+              (let ((phase (funcall phase-generator frequency)))
+                (funcall (getf wave-writer :write-sample) (sin phase))
+                (funcall (getf wave-writer :write-sample) (cos phase)))))
           ;; Close file
           (funcall (getf wave-writer :close-file))
           "DONE")))
@@ -67,4 +69,4 @@ Acknowledgements
 
 * * *
 
-Generated 2019-04-06 02:52:29
+Generated 2019-04-10 20:23:19
