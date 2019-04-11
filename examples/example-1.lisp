@@ -10,7 +10,8 @@
     (flet ((get-delta-phi (frequency)
              (/ (* 2PI frequency) sample-rate)))
       (lambda (frequency)
-        (setf phi (rem (+ phi (get-delta-phi frequency)) 2PI))))))
+        (setf phi (rem (+ phi (get-delta-phi frequency)) 2PI))
+	phi))))
 
 (defun example()
   (let* ((sample-rate 44100)
