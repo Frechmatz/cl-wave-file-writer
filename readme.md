@@ -17,7 +17,8 @@ A Common Lisp library for writing wave (.wav) files. The writer does not buffer 
         (flet ((get-delta-phi (frequency)
                  (/ (* 2PI frequency) sample-rate)))
           (lambda (frequency)
-            (setf phi (rem (+ phi (get-delta-phi frequency)) 2PI))))))
+            (setf phi (rem (+ phi (get-delta-phi frequency)) 2PI))
+            phi))))
     
     (defun example()
       (let* ((sample-rate 44100)
@@ -25,8 +26,8 @@ A Common Lisp library for writing wave (.wav) files. The writer does not buffer 
         ;; Instantiate writer
         (let ((wave-writer (cl-wave-file-writer:make-writer
                             :filename (merge-pathnames
-    				   "cl-wave-file-writer-example-1.wav"
-    				   (user-homedir-pathname))
+                                       "cl-wave-file-writer-example-1.wav"
+                                       (user-homedir-pathname))
                             :channel-count 2
                             :sample-width :16Bit
                             :sample-rate sample-rate)))
@@ -69,4 +70,4 @@ Acknowledgements
 
 * * *
 
-Generated 2019-04-10 20:23:19
+Generated 2019-04-11 22:46:25
