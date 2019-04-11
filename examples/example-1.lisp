@@ -11,7 +11,7 @@
              (/ (* 2PI frequency) sample-rate)))
       (lambda (frequency)
         (setf phi (rem (+ phi (get-delta-phi frequency)) 2PI))
-	phi))))
+        phi))))
 
 (defun example()
   (let* ((sample-rate 44100)
@@ -19,8 +19,8 @@
     ;; Instantiate writer
     (let ((wave-writer (cl-wave-file-writer:make-writer
                         :filename (merge-pathnames
-				   "cl-wave-file-writer-example-1.wav"
-				   (user-homedir-pathname))
+                                   "cl-wave-file-writer-example-1.wav"
+                                   (user-homedir-pathname))
                         :channel-count 2
                         :sample-width :16Bit
                         :sample-rate sample-rate)))
