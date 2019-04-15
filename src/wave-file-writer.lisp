@@ -110,7 +110,7 @@
 	   :sample-width-bytes 3
 	   :convert #'value-to-24bit-signed))))
     (let* ((sample-count 0)
-	   (file-output-stream)
+	   (file-output-stream nil)
 	   (sample-mapping (getf sample-width-mapping sample-width))
 	   (sample-width-bytes (getf sample-mapping :sample-width-bytes))
 	   (convert-sample (getf sample-mapping :convert)))
