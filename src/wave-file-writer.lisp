@@ -75,16 +75,16 @@
      value)))
 
 ;;
-;; Streaming Wave-File-Writer
+;; Wave-File-Writer
 ;;
 
 (defun make-writer (&key filename channel-count sample-rate (sample-width :16Bit))
-  "Creates a Wave-File output writer. The function has the following arguments:
+  "Creates a Wave-File writer. The function has the following arguments:
    <ul>
-      <li>:filename Path of the file to be written.</li>
-      <li>:channel-count Number of channels of the Wave file.</li>
+      <li>:filename Path of the file to be written. An existing file will be replaced.</li>
+      <li>:channel-count Number of channels.</li>
       <li>:sample-rate The sample rate, for example 44100.</li>
-      <li>:sample-width The resolution of the samples. One of :8Bit, :16Bit, :24Bit</li>
+      <li>:sample-width The width (resolution) of the samples. One of :8Bit, :16Bit, :24Bit</li>
    </ul>
    Returns a property list with the following keys:
    <ul>
@@ -140,7 +140,8 @@
 	       (get-data-chunk-size (number-of-samples)
 		 (* number-of-samples sample-width-bytes))
 	       (get-riff-chunk-size (number-of-samples)
-		 (+ 4 (get-data-chunk-size number-of-samples) (get-fmt-chunk-size number-of-samples)))
+		 (+ 4 (get-data-chunk-size number-of-samples)
+		    (get-fmt-chunk-size number-of-samples)))
 	       (write-riff-chunk (number-of-samples)
 		 (let ((riff-size (get-riff-chunk-size number-of-samples)))
 		   (write-tag file-output-stream "RIFF")
@@ -174,7 +175,7 @@
 			 (setf sample-count (+ 1 sample-count))
 			 (write-sample sample))
 	 :close-file (lambda ()
-		       ;; Update chunks
+		       ;; Seek to start of file and update chunks
 		       (file-position file-output-stream :start)
 		       (write-riff-chunk sample-count)
 		       (write-format-chunk sample-count)

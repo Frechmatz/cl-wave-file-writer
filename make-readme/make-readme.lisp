@@ -1,28 +1,43 @@
 (in-package :cl-wave-file-writer-make-readme)
 
-(defun write-html ()
-  (let ((CL-README:*HOME-DIRECTORY* "/Users/olli/src/lisp/cl-wave-file-writer/"))
-    (let ((docstr (concatenate
-		   'string
-		   "<html><body>"
-		   "<h1>cl-wave-file-writer</h1>"
-		   "A Common Lisp library for writing wave (.wav) files. The writer does not buffer data, so files of arbitrary 
-                    size can be written."
-		   (example-code "examples/example-1.lisp")
-		   ;;"<h2>Installation</h2>"
-		   ;;(read-text-file "makedoc/installation.html")
-		   "<h2>API</h2>"
-		   (make-function-string 'cl-wave-file-writer:make-writer :append-separator nil)
-		   (read-text-file "make-readme/acknowledge.html")
-		   "<hr/><p><small>Generated " (current-date) "</small></p>"
-		   "</body></html>"
-		   )))
-      (with-open-file (fh (make-path "make-readme/generated/readme.html")
-			  :direction :output
-			  :if-exists :supersede
-			  :if-does-not-exist :create
-			  :external-format :utf-8)
-	(format fh "~a" docstr)))))
+(defun make-function-string (f)
+  (concatenate
+   'string
+   "<p>"
+   (cl-readme:sbcl-make-function-decl f)
+   "</p><p>"
+   (documentation f 'function)
+   "</p>"))
 
-;;(write-html)
+
+(defun get-readme ()
+  `("<html><body>"
+    (semantic (:name "header")
+	      (heading (:name "cl-wave-file-writer")
+		       ,(cl-readme:read-verbatim "make-readme/introduction.html")))
+    (semantic (:name "nav")
+	      (heading (:name "Table of contents") (toc)))
+    (semantic (:name "section")
+	      (heading (:name "Example" :toc t)
+		       ,(cl-readme:read-code "examples/example-1.lisp"))
+	      (heading (:name "API" :toc t)
+		       ,(make-function-string 'cl-wave-file-writer:make-writer))
+	      (heading (:name "Acknowledgements" :toc t)
+		       ,(cl-readme:read-verbatim "make-readme/acknowledge.html")))
+    (semantic (:name "footer")
+	      "<p><small>Generated " ,(cl-readme:current-date) "</small></p>")
+    "</body></html>"))
+
+(defun make-readme ()
+  (let ((cl-readme:*home-directory* "/Users/olli/src/lisp/cl-wave-file-writer/")
+	(cl-readme:*tab-width* 8))
+    (with-open-file (fh (cl-readme:make-path "docs/index.html")
+			:direction :output
+			:if-exists :supersede
+			:if-does-not-exist :create
+			:external-format :utf-8)
+      (cl-readme:doc-to-html fh (get-readme))))
+  "DONE")
+
+;;(make-readme)
 

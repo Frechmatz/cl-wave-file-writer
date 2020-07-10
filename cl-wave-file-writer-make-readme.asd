@@ -4,7 +4,7 @@
   :licence "MIT"
   :author "Oliver <frechmatz@gmx.de>"
   :maintainer "Oliver <frechmatz@gmx.de>"
-  :homepage "https://github.com/Frechmatz/cl-synthesizer"
+  :homepage "https://github.com/Frechmatz/cl-wave-file-writer"
   :description "A wave file writer"
   :long-description "A wave file writer"
   :depends-on (:cl-wave-file-writer :cl-readme)

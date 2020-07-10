@@ -3,15 +3,11 @@
 
 (in-package :cl-wave-file-writer-example-1)
 
-(defconstant 2PI (* 2 PI))
-
 (defun make-phase-generator (sample-rate)
   (let ((phi 0.0))
-    (flet ((get-delta-phi (frequency)
-             (/ (* 2PI frequency) sample-rate)))
-      (lambda (frequency)
-        (setf phi (rem (+ phi (get-delta-phi frequency)) 2PI))
-        phi))))
+    (lambda (frequency)
+      (setf phi (rem (+ phi (/ (* 2 PI frequency) sample-rate)) (* 2 PI)))
+      phi)))
 
 (defun example()
   (let* ((sample-rate 44100)

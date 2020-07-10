@@ -1,0 +1,51 @@
+<html><body><header><h1>cl-wave-file-writer</h1><p>A Common Lisp package for generating wave (.wav) audio files. Supports sample widths of
+  8, 16 and 24 Bits, any sample rate and any number of channels. The package does not
+  buffer data in memory, so files of arbitrary size can be created without impacting
+  the memory footprint of the application.</p>
+<p>The source code of cl-wave-file-writer can be found <a href="https://github.com/Frechmatz/cl-wave-file-writer">here</a>.</p></header><nav><h1>Table of contents</h1><ul><li><a href="#Example-1">Example</a></li><li><a href="#API-2">API</a></li><li><a href="#Acknowledgements-3">Acknowledgements</a></li></ul></nav><section><h1 id="Example-1">Example</h1><p><pre><code>(defpackage :cl-wave-file-writer-example-1
+  (:use :cl))
+
+(in-package :cl-wave-file-writer-example-1)
+
+(defun make-phase-generator (sample-rate)
+  (let ((phi 0.0))
+    (lambda (frequency)
+      (setf phi (rem (+ phi (/ (* 2 PI frequency) sample-rate)) (* 2 PI)))
+      phi)))
+
+(defun example()
+  (let* ((sample-rate 44100)
+         (phase-generator (make-phase-generator sample-rate)))
+    ;; Instantiate writer
+    (let ((wave-writer (cl-wave-file-writer:make-writer
+                        :filename (merge-pathnames
+                                   "cl-wave-file-writer-example-1.wav"
+                                   (user-homedir-pathname))
+                        :channel-count 2
+                        :sample-width :16Bit
+                        :sample-rate sample-rate)))
+      ;; Open file
+      (funcall (getf wave-writer :open-file))
+      ;; Write samples
+      (let ((length-seconds 2) (frequency 5))
+        (dotimes (i (* length-seconds sample-rate))
+          (let ((phase (funcall phase-generator frequency)))
+            (funcall (getf wave-writer :write-sample) (sin phase))
+            (funcall (getf wave-writer :write-sample) (cos phase)))))
+      ;; Close file
+      (funcall (getf wave-writer :close-file))
+      "DONE")))
+
+;; (example)</code></pre></p><h1 id="API-2">API</h1><p><b>cl-wave-file-writer:make-writer</b> &key filename channel-count sample-rate (sample-width :16bit) </p><p>Creates a Wave-File writer. The function has the following arguments:
+   <ul>
+      <li>:filename Path of the file to be written. An existing file will be replaced.</li>
+      <li>:channel-count Number of channels.</li>
+      <li>:sample-rate The sample rate, for example 44100.</li>
+      <li>:sample-width The width (resolution) of the samples. One of :8Bit, :16Bit, :24Bit</li>
+   </ul>
+   Returns a property list with the following keys:
+   <ul>
+      <li>:open-file A function that opens the file.</li>
+      <li>:close-file A function that closes the file.</li>
+      <li>:write-sample A function that writes a sample. -1.0 <= sample <= 1.0.</li>
+   </ul></p><h1 id="Acknowledgements-3">Acknowledgements</h1><p>The library uses code taken from Ryan Kings <a href="https://github.com/RyanTKing/cl-wave">cl-wave</a> library.</p></section><footer><p><small>Generated 2020-07-10  21:30:59</small></p></footer></body></html>
