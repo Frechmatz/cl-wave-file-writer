@@ -26,7 +26,9 @@
       (let ((length-seconds 2) (frequency 5))
         (dotimes (i (* length-seconds sample-rate))
           (let ((phase (funcall phase-generator frequency)))
+	    ;; Channel 1
             (funcall (getf wave-writer :write-sample) (sin phase))
+	    ;; Channel 2
             (funcall (getf wave-writer :write-sample) (cos phase)))))
       ;; Close file
       (funcall (getf wave-writer :close-file))))
