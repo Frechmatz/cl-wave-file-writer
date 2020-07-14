@@ -30,11 +30,13 @@
       (let ((length-seconds 2) (frequency 5))
         (dotimes (i (* length-seconds sample-rate))
           (let ((phase (funcall phase-generator frequency)))
+            ;; Channel 1
             (funcall (getf wave-writer :write-sample) (sin phase))
+            ;; Channel 2
             (funcall (getf wave-writer :write-sample) (cos phase)))))
       ;; Close file
-      (funcall (getf wave-writer :close-file))
-      "DONE")))
+      (funcall (getf wave-writer :close-file))))
+  "DONE")
 
 ;; (example)</code></pre></p><h1 id="API-2">API</h1><p><b>cl-wave-file-writer:make-writer</b> &key filename channel-count sample-rate (sample-width :16bit) </p><p>Creates a Wave-File writer. The function has the following arguments:
    <ul>
@@ -45,7 +47,8 @@
    </ul>
    Returns a property list with the following keys:
    <ul>
-      <li>:open-file A function that opens the file.</li>
-      <li>:close-file A function that closes the file.</li>
-      <li>:write-sample A function that writes a sample. -1.0 <= sample <= 1.0.</li>
-   </ul></p><h1 id="Acknowledgements-3">Acknowledgements</h1><p>The library uses code taken from Ryan Kings <a href="https://github.com/RyanTKing/cl-wave">cl-wave</a> library.</p></section><footer><p><small>Generated 2020-07-10  21:30:59</small></p></footer></body></html>
+      <li>:open-file A function with no arguments that opens the file.</li>
+      <li>:close-file A function with no arguments that closes the file.</li>
+      <li>:write-sample A function with one argument that writes a sample. 
+-1.0 <= sample <= 1.0. Must be called for each channel.</li>
+   </ul></p><h1 id="Acknowledgements-3">Acknowledgements</h1><p>The library uses code taken from Ryan Kings <a href="https://github.com/RyanTKing/cl-wave">cl-wave</a> library.</p></section><footer><p><small>Generated 2020-07-14  20:07:21</small></p></footer></body></html>
