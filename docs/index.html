@@ -1,7 +1,6 @@
 <html><body><header><h1>cl-wave-file-writer</h1><p>A Common Lisp package for generating wave (.wav) audio files. Supports sample widths of
   8, 16 and 24 Bits, any sample rate and any number of channels. The package does not
-  buffer samples in memory, so files of arbitrary size can be created without impacting
-  the memory footprint of the application.</p>
+  buffer samples in memory.</p>
 <p>The source code of cl-wave-file-writer can be found <a href="https://github.com/Frechmatz/cl-wave-file-writer">here</a>.</p></header><nav><h1>Table of contents</h1><ul><li><a href="#Example-1">Example</a></li><li><a href="#API-2">API</a></li><li><a href="#Acknowledgements-3">Acknowledgements</a></li></ul></nav><section><h1 id="Example-1">Example</h1><p><pre><code>(defpackage :cl-wave-file-writer-example-1
   (:use :cl))
 
@@ -51,4 +50,4 @@
       <li>:close-file A function with no arguments that closes the file.</li>
       <li>:write-sample A function with one argument that writes a sample. 
 -1.0 <= sample <= 1.0. Must be called for each channel.</li>
-   </ul></p><h1 id="Acknowledgements-3">Acknowledgements</h1><p>The library uses code taken from Ryan Kings <a href="https://github.com/RyanTKing/cl-wave">cl-wave</a> library.</p></section><footer><p><small>Generated 2020-07-14  20:13:56</small></p></footer></body></html>
+   </ul></p><h1 id="Acknowledgements-3">Acknowledgements</h1><p>The library uses code taken from Ryan Kings <a href="https://github.com/RyanTKing/cl-wave">cl-wave</a> library.</p></section><footer><p><small>Generated 2020-07-14  20:30:38</small></p></footer></body></html>
