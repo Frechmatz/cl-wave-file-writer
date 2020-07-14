@@ -37,8 +37,12 @@
 ;; We want to allow both +1.0 and -1.0 as input values
 ;;
 
+
 (defun value-to-8bit-unsigned (value)
   "value: -1.0 ... 1.0"
+  ;; Unsigned representation for 8 bit waves
+  ;; https://en.wikipedia.org/wiki/WAV
+  ;; https://stackoverflow.com/questions/44415863/what-is-the-byte-format-of-an-8-bit-monaural-wav-file
   (setf value (clip-value value))
   (setf value (round (* 128 value)))
   (setf value (+ 128 value))
@@ -80,21 +84,9 @@
 
 (defparameter *sample-width-mapping*
   (list
-   :8Bit
-   (list
-    :sample-width-bytes 1
-    ;; Unsigned representation for 8 bit waves
-    ;; https://en.wikipedia.org/wiki/WAV
-    ;; https://stackoverflow.com/questions/44415863/what-is-the-byte-format-of-an-8-bit-monaural-wav-file
-    :convert #'value-to-8bit-unsigned)
-   :16Bit
-   (list
-    :sample-width-bytes 2
-    :convert #'value-to-16bit-signed)
-   :24Bit
-   (list
-    :sample-width-bytes 3
-    :convert #'value-to-24bit-signed)))
+   :8Bit (list :sample-width-bytes 1 :convert #'value-to-8bit-unsigned)
+   :16Bit (list :sample-width-bytes 2 :convert #'value-to-16bit-signed)
+   :24Bit (list :sample-width-bytes 3 :convert #'value-to-24bit-signed)))
 
 ;;
 ;; Wave-File-Writer
