@@ -110,15 +110,18 @@
    </ul>
    Returns a property list with the following keys:
    <ul>
-      <li>:open-file A function that opens the file.</li>
-      <li>:close-file A function that closes the file.</li>
-      <li>:write-sample A function that writes a sample. -1.0 <= sample <= 1.0.</li>
+      <li>:open-file A function with no arguments that opens the file.</li>
+      <li>:close-file A function with no arguments that closes the file.</li>
+      <li>:write-sample A function with one argument that writes a sample. 
+-1.0 <= sample <= 1.0. Must be called for each channel.</li>
    </ul>"
   (let* ((sample-count 0)
 	 (file-output-stream nil)
 	 (sample-mapping (getf *sample-width-mapping* sample-width))
 	 (sample-width-bytes (getf sample-mapping :sample-width-bytes))
 	 (convert-sample (getf sample-mapping :convert)))
+    (if (not filename)
+	(error "Filename must not be nil"))
     (if (< channel-count 1)
 	(error (format nil "Channel count must be greater zero: ~a" channel-count)))
     (if (not sample-mapping)
