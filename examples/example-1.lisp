@@ -29,7 +29,7 @@
             (funcall (getf wave-writer :write-sample) (sin phase))
             (funcall (getf wave-writer :write-sample) (cos phase)))))
       ;; Close file
-      (funcall (getf wave-writer :close-file))
-      "DONE")))
+      (funcall (getf wave-writer :close-file))))
+  "DONE")
 
 ;; (example)
