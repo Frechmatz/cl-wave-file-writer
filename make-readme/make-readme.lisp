@@ -18,6 +18,8 @@
     (semantic (:name "nav")
 	      (heading (:name "Table of contents") (toc)))
     (semantic (:name "section")
+	      (heading (:name "Installation" :toc t)
+		       ,(cl-readme:read-verbatim "make-readme/installation.html"))
 	      (heading (:name "Example" :toc t)
 		       ,(cl-readme:read-code "examples/example-1.lisp"))
 	      (heading (:name "API" :toc t)
