@@ -1,2 +1,2 @@
 (defpackage :cl-wave-file-writer-make-readme
-  (:use :cl :cl-readme))
+  (:use :cl))

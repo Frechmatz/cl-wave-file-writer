@@ -7,7 +7,7 @@
   :homepage "https://github.com/Frechmatz/cl-wave-file-writer"
   :description "A wave file writer"
   :long-description "A wave file writer"
-  :depends-on (:cl-wave-file-writer :cl-readme)
+  :depends-on (:cl-wave-file-writer :cl-html-readme :docparser)
   :components ((:module "make-readme"
 			:serial t
 			:components ((:file "packages")
