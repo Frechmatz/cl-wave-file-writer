@@ -1,4 +1,4 @@
-(in-package :cl-wave-file-writer-make-readme)
+(in-package :cl-wave-file-writer-make-doc)
 
 (defun make-index (system)
   (docparser:parse system))
@@ -51,13 +51,15 @@
 		       ,(make-code-string "examples/example-1.lisp"))
 	      (heading (:name "API" :toc t)
 		       ,(make-function-string index "cl-wave-file-writer" "make-writer"))
+	      (heading (:name "Generate documentation" :toc t)
+		       ,(make-code-string "make-readme/generate-doc.lisp"))
 	      (heading (:name "Acknowledgements" :toc t)
 		       ,(cl-html-readme:read-file "make-readme/acknowledge.html")))
     (semantic (:name "footer")
-	      "<p><small>Generated " ,(now) "</small></p>")
+	      "<hr/><p><small>Generated " ,(now) "</small></p>")
     "</body></html>"))
 
-(defun make-readme ()
+(defun make-doc ()
   (let ((cl-html-readme:*home-directory* (asdf:system-source-directory :cl-wave-file-writer))
 	(cl-html-readme:*tab-width* 8)
 	(index (make-index :cl-wave-file-writer)))
@@ -69,5 +71,5 @@
       (cl-html-readme:doc-to-html fh (get-readme index))))
   "DONE")
 
-;;(make-readme)
+;;(make-doc)
 

@@ -1,7 +1,7 @@
 <html><body><header><h1>cl-wave-file-writer</h1><p>A Common Lisp library for generating wave (.wav) audio files. Supports sample widths of
   8, 16 and 24 Bits, any sample rate and any number of channels. Samples are not
   buffered in memory.</p>
-<p>The source code of cl-wave-file-writer can be found <a href="https://github.com/Frechmatz/cl-wave-file-writer">here</a>.</p></header><nav><h1>Table of contents</h1><ul><li><a href="#Installation">Installation</a></li><li><a href="#Example">Example</a></li><li><a href="#API">API</a></li><li><a href="#Acknowledgements">Acknowledgements</a></li></ul></nav><section><h1 id="Installation">Installation</h1><p><pre><code>(ql:quickload "cl-wave-file-writer")</code></pre></p><h1 id="Example">Example</h1><p><pre><code>(defpackage :cl-wave-file-writer-example-1
+<p>The source code of cl-wave-file-writer can be found <a href="https://github.com/Frechmatz/cl-wave-file-writer">here</a>.</p></header><nav><h1>Table of contents</h1><ul><li><a href="#Installation">Installation</a></li><li><a href="#Example">Example</a></li><li><a href="#API">API</a></li><li><a href="#Generate documentation">Generate documentation</a></li><li><a href="#Acknowledgements">Acknowledgements</a></li></ul></nav><section><h1 id="Installation">Installation</h1><p><pre><code>(ql:quickload "cl-wave-file-writer")</code></pre></p><h1 id="Example">Example</h1><p><pre><code>(defpackage :cl-wave-file-writer-example-1
   (:use :cl))
 
 (in-package :cl-wave-file-writer-example-1)
@@ -50,4 +50,5 @@
       <li>:close-file A function with no arguments that closes the file.</li>
       <li>:write-sample A function with one argument that writes a sample. 
 -1.0 <= sample <= 1.0. Must be called for each channel.</li>
-   </ul></p><h1 id="Acknowledgements">Acknowledgements</h1><p>The library uses code taken from Ryan Kings <a href="https://github.com/RyanTKing/cl-wave">cl-wave</a> library.</p></section><footer><p><small>Generated 2020-12-11  20:12:12</small></p></footer></body></html>
+   </ul></p><h1 id="Generate documentation">Generate documentation</h1><p><pre><code>(asdf:load-system :cl-wave-file-writer/doc)
+(cl-wave-file-writer-make-doc::make-doc)</code></pre></p><h1 id="Acknowledgements">Acknowledgements</h1><p>The library uses code taken from Ryan Kings <a href="https://github.com/RyanTKing/cl-wave">cl-wave</a> library.</p></section><footer><hr/><p><small>Generated 2020-12-23  18:24:37</small></p></footer></body></html>

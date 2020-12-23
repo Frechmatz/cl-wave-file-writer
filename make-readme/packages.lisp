@@ -1,2 +1,2 @@
-(defpackage :cl-wave-file-writer-make-readme
+(defpackage :cl-wave-file-writer-make-doc
   (:use :cl))
