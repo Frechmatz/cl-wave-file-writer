@@ -51,6 +51,8 @@
 		       ,(make-code-string "examples/example-1.lisp"))
 	      (heading (:name "API" :toc t)
 		       ,(make-function-string index "cl-wave-file-writer" "make-writer"))
+	      (heading (:name "Run tests" :toc t)
+		       ,(cl-html-readme:read-file "make-readme/run-tests.html"))
 	      (heading (:name "Generate documentation" :toc t)
 		       ,(make-code-string "make-readme/generate-doc.lisp"))
 	      (heading (:name "Acknowledgements" :toc t)
