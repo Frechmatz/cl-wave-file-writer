@@ -49,6 +49,12 @@
 		       ,(cl-html-readme:read-file "make-readme/installation.html"))
 	      (heading (:name "Example" :toc t)
 		       ,(make-code-string "examples/example-1.lisp"))
+	      (heading (:name "Change-Log" :toc t)
+		       (heading (:name "Version 1.0.0")
+				"<p>Initial release of cl-wave-file-writer.</p>"
+				"<p><b>This version is the current quicklisp release.</b></p>")
+		       (heading (:name "Version 1.0.1")
+				"<p>Removed redundant clipping.</p>"))
 	      (heading (:name "API" :toc t)
 		       ,(make-function-string index "cl-wave-file-writer" "make-writer"))
 	      (heading (:name "Run tests" :toc t)

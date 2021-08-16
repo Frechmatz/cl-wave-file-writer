@@ -23,27 +23,12 @@
 ;;
 ;;
 
-(defmacro clip-value (value)
-  `(cond
-    ((> ,value 1.0)
-     1.0)
-    ((< ,value -1.0)
-     -1.0)
-    (t ,value)))
-
-;;
-;; Regarding final clipping (after round) see also
-;; https://stackoverflow.com/questions/54548304/subtlety-in-converting-doubles-to-a-sound-byte-output
-;; We want to allow both +1.0 and -1.0 as input values
-;;
-
-
 (defun value-to-8bit-unsigned (value)
   "value: -1.0 ... 1.0"
   ;; Unsigned representation for 8 bit waves
   ;; https://en.wikipedia.org/wiki/WAV
   ;; https://stackoverflow.com/questions/44415863/what-is-the-byte-format-of-an-8-bit-monaural-wav-file
-  (setf value (clip-value value))
+  ;; https://stackoverflow.com/questions/54548304/subtlety-in-converting-doubles-to-a-sound-byte-outpu
   (setf value (round (* 128 value)))
   (setf value (+ 128 value))
   (cond
@@ -56,7 +41,6 @@
 
 (defun value-to-16bit-signed (value)
   "value: -1.0 ... 1.0"
-  (setf value (clip-value value))
   (setf value (round (* 32768 value)))
   (cond
     ((< 32767 value)
@@ -68,7 +52,6 @@
 
 (defun value-to-24bit-signed (value)
   "value: -1.0 ... 1.0"
-  (setf value (clip-value value))
   (setf value (round (* 8388608 value)))
   (cond
     ((< 8388607 value)
