@@ -1,6 +1,6 @@
 (defsystem :cl-wave-file-writer
   :serial t
-  :version "1.0.0"
+  :version "1.0.1"
   :licence "MIT"
   :author "Oliver <frechmatz@gmx.de>"
   :maintainer "Oliver <frechmatz@gmx.de>"
@@ -14,7 +14,7 @@
 
 (defsystem :cl-wave-file-writer/doc
   :serial t
-  :version "1.0.0"
+  :version "1.0.1"
   :licence "MIT"
   :author "Oliver <frechmatz@gmx.de>"
   :maintainer "Oliver <frechmatz@gmx.de>"
