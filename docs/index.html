@@ -54,8 +54,8 @@
 
 ;; (example)</code></pre></p>
 <h1 id="Change-Log">Change-Log</h1>
-<h2>Version 1.0.0</h2><p>Initial release of cl-wave-file-writer.</p><p><b>This version is the current quicklisp release.</b></p>
-<h2>Version 1.0.1</h2><p>Removed redundant clipping.</p>
+<h2>Version 1.0.0</h2><p>Initial release of cl-wave-file-writer.</p>
+<h2>Version 1.0.1</h2><p>Removed redundant clipping.</p><p><b>This version is the current quicklisp release.</b></p>
 <h1 id="API">API</h1><b>make-writer</b>&nbsp;(&key filename channel-count sample-rate (sample-width 16bit))<p>Creates a Wave-File writer. The function has the following arguments:
    <ul>
       <li>:filename Path of the file to be written. An existing file will be replaced.</li>
@@ -70,10 +70,10 @@
       <li>:write-sample A function with one argument that writes a sample. 
 -1.0 <= sample <= 1.0. Must be called for each channel.</li>
    </ul></p>
-<h1 id="Run tests">Run tests</h1><p>The library unfortunately does not have a test suite.
+<h1 id="Run tests">Run tests</h1><p>The library does not have a test suite.
     For manual testing, an example that creates Wave files for multiple sample rates, sample widths and number of channels can be found <a href="https://github.com/Frechmatz/cl-wave-file-writer/blob/master/examples/example-2.lisp">here</a>. A Matlab script for plotting multi-channel Wave files can be found <a href="https://github.com/Frechmatz/cl-wave-file-writer/blob/master/matlab/plotwavefile.m">here</a>.
 </p>
 <h1 id="Generate documentation">Generate documentation</h1><p><pre><code>(asdf:load-system :cl-wave-file-writer/doc)
 (cl-wave-file-writer-make-doc::make-doc)</code></pre></p>
 <h1 id="Acknowledgements">Acknowledgements</h1><p>The library uses code taken from Ryan Kings <a href="https://github.com/RyanTKing/cl-wave">cl-wave</a> library.</p></section>
-<footer><hr/><p><small>Generated 2021-08-16  12:22:05</small></p></footer></body></html>
+<footer><hr/><p><small>Generated 2021-08-16  12:31:49</small></p></footer></body></html>
