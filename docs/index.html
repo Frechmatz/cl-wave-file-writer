@@ -15,7 +15,7 @@
 <li><a href="#Generate documentation">Generate documentation</a></li>
 <li><a href="#Acknowledgements">Acknowledgements</a></li></ul></nav>
 <section>
-<h1 id="Installation">Installation</h1><p><pre><code>(ql:quickload "cl-wave-file-writer")</code></pre></p>
+<h1 id="Installation">Installation</h1>The library is available via Quicklisp. Within the REPL run <code>(ql:quickload "cl-wave-file-writer")</code> to install and <code>(slot-value (asdf:find-system 'cl-wave-file-writer) 'asdf:version)</code> to get the version number of the installed release.
 <h1 id="Example">Example</h1><p><pre><code>(defpackage :cl-wave-file-writer-example-1
   (:use :cl))
 
@@ -55,7 +55,7 @@
 ;; (example)</code></pre></p>
 <h1 id="Change-Log">Change-Log</h1>
 <h2>Version 1.0.0</h2><p>Initial release of cl-wave-file-writer.</p>
-<h2>Version 1.0.1</h2><p>Removed redundant clipping.</p><p><b>This version is the current quicklisp release.</b></p>
+<h2>Version 1.0.1</h2><p>Removed redundant clipping.</p>
 <h1 id="API">API</h1><b>make-writer</b>&nbsp;(&key filename channel-count sample-rate (sample-width 16bit))<p>Creates a Wave-File writer. The function has the following arguments:
    <ul>
       <li>:filename Path of the file to be written. An existing file will be replaced.</li>
@@ -76,4 +76,4 @@
 <h1 id="Generate documentation">Generate documentation</h1><p><pre><code>(asdf:load-system :cl-wave-file-writer/doc)
 (cl-wave-file-writer-make-doc::make-doc)</code></pre></p>
 <h1 id="Acknowledgements">Acknowledgements</h1><p>The library uses code taken from Ryan Kings <a href="https://github.com/RyanTKing/cl-wave">cl-wave</a> library.</p></section>
-<footer><hr/><p><small>Generated 2021-08-16  12:31:49</small></p></footer></body></html>
+<footer><hr/><p><small>Generated 2024-07-03  19:49:29 (cl-html-readme 3.0.0)</small></p></footer></body></html>
