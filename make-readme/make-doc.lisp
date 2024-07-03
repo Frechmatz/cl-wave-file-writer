@@ -46,15 +46,18 @@
 	      (heading (:name "Table of contents") (toc)))
     (semantic (:name "section")
 	      (heading (:name "Installation" :toc t)
-		       ,(cl-html-readme:read-file "make-readme/installation.html"))
+	      "The library is available via Quicklisp. "
+	      "Within the REPL run <code>(ql:quickload \"cl-wave-file-writer\")</code> "
+	      "to install and "
+	      "<code>(slot-value (asdf:find-system 'cl-wave-file-writer) 'asdf:version)</code> "
+	      "to get the version number of the installed release.")
 	      (heading (:name "Example" :toc t)
 		       ,(make-code-string "examples/example-1.lisp"))
 	      (heading (:name "Change-Log" :toc t)
 		       (heading (:name "Version 1.0.0")
 				"<p>Initial release of cl-wave-file-writer.</p>")
 		       (heading (:name "Version 1.0.1")
-				"<p>Removed redundant clipping.</p>"
-				"<p><b>This version is the current quicklisp release.</b></p>"))
+				"<p>Removed redundant clipping.</p>"))
 	      (heading (:name "API" :toc t)
 		       ,(make-function-string index "cl-wave-file-writer" "make-writer"))
 	      (heading (:name "Run tests" :toc t)
@@ -64,7 +67,11 @@
 	      (heading (:name "Acknowledgements" :toc t)
 		       ,(cl-html-readme:read-file "make-readme/acknowledge.html")))
     (semantic (:name "footer")
-	      "<hr/><p><small>Generated " ,(now) "</small></p>")
+	      "<hr/><p><small>Generated "
+	      ,(now)
+	      " (cl-html-readme "
+	      ,(format nil "~a" (slot-value (asdf:find-system 'cl-html-readme) 'asdf:version))	        	  ")"
+	      "</small></p>")
     "</body></html>"))
 
 (defun make-doc ()
